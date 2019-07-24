@@ -52,10 +52,10 @@ class Album
 
 
   def update(name,artist,genre,year)
-    self.name = name
-    self.artist = artist
-    self.genre = genre
-    self.year = year
+    self.name = name.length > 0 ? name : self.name
+    self.artist = artist.length > 0 ? artist : self.artist
+    self.genre = genre.length > 0 ? genre : self.genre
+    self.year = year.length > 0 ? year : self.year
     @@albums[self.id] = Album.new(self.name,self.artist, self.genre, self.year, self.id)
   end
 

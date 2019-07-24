@@ -51,12 +51,6 @@ class Song
     songs
   end
 
-
-# this is the issue, moving to album.rb per lessons.
-  # def songs
-  #   Song.find_by_album(self.id)
-  # end
-
   def album
     Album.find(self.album_id)
   end

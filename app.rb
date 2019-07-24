@@ -35,7 +35,6 @@ get ('/albums/:id') do
   erb(:album)
 end
 
-
 post ('/albums_search') do
   name = params[:search]
   @albums = Album.search(name)
@@ -60,10 +59,6 @@ delete ('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
-#
-# get ('/custom_route') do
-#   "We can even create custom routes, but we should only do this when needed."
-# end
 
 # Get the detail for a specific song such as lyrics and songwriters.
 get ('/albums/:id/songs/:song_id') do
@@ -93,4 +88,17 @@ delete ('/albums/:id/songs/:song_id') do
   song.delete
   @album = Album.find(params[:id].to_i())
   erb(:album)
+end
+
+get ('/albums/:id/songs/:song_id/lyrics') do
+  @song = Song.find(params[:song_id].to_i())
+  erb(:lyrics)
+end
+
+post ('/albums/:id/songs/:song_id/lyrics') do
+  lyrics = params[:lyrics]
+  song = Song.new(name, lyrics)
+  song.save()
+  @song = Song.new()
+  erb(:albums)
 end
